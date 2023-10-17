@@ -1,0 +1,293 @@
+*,
+*::after,
+*::before{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+ul{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+a,input,span,label,button,select,img{
+    display: inline-block;
+}
+img{
+    width: 100%;
+}
+body{
+    overflow: hidden;
+    min-height: 100vh;
+    background: url('../images/natures.jpg') center / cover;
+    display: grid;
+    place-items: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.pop-up{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.687);
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    user-select: none;
+    display: none;
+    opacity: 0;
+    transition: all 0.5 ease-out;
+}
+.active{
+    display: flex;
+    opacity: 1;
+}
+.pop-up .wrap{
+    width: min(80% , 700px);
+    background-color: whitesmoke;
+    overflow: auto;
+    padding: 20px;
+    border-radius: 5px;
+}
+.pop-up .wrap .container{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.alert{
+    min-width: 200px;
+    color: whitesmoke;
+    border-radius: 5px;
+    background-color: #11691A;
+    text-align: center;
+    padding: 15px 20px;
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    z-index: 1000;
+
+} 
+.alert:not(.active){
+    transform: translateX(100%);
+    transition: all 0.5s ease-out;
+}
+.delete{
+    background-color: #C2421E;
+}
+.wrong{
+    background-color: #afc21e;
+}
+.create.active,
+.delete.active,
+.wrong.active
+{
+    display: inline-block;
+    animation: alertanimate .5s ease-in-out;
+}
+@keyframes alertanimate {
+    0%{
+        transform: translateX(100%);
+    }
+    50%{
+        transform: translateX(-20%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+.wrap .header-pop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.wrap .header-pop .close-pop-up{
+    font-size: 25px;
+    cursor: pointer;
+}
+.wrap form .img-form{
+    width: 70px;
+    height: 70px;
+    border: 1px solid black;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto;
+}
+.wrap form .img-form label{
+    position: absolute;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    background-color: black;
+    cursor: pointer;
+    font-size: 20px;
+    display: none;
+    opacity: 0;
+}
+.wrap form .img-form:hover label{
+    display: flex;
+    opacity: 1;
+}
+.wrap form .input-file{
+    display: none;
+}
+.wrap form .data-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.wrap form .data-form div{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+.wrap form .data-form input , .wrap form .data-form button{
+    padding: 15px 20px;
+    flex-grow: 1;
+    border-radius: 5px;
+}
+.wrap form .data-form .req{
+    display: block;
+    position: relative;
+}
+.wrap form .data-form .req::after{
+    content: "*";
+    margin: 0 0 0 0.5em;
+    position: absolute;
+    top: 0;
+    right: -1rem;
+    z-index: 2000;
+}
+.wrap form .data-form button {
+    cursor: pointer;
+    background-color: rgb(13, 13, 145);
+    color: whitesmoke;
+    font-size: 16px;
+}
+main{
+    width: 95%;
+    height: 90vh;
+    background-color: #fff5;
+    -webkit-backdrop-filter: blur(7px);
+    -moz-backdrop-filter: blur(7px);
+    -ms-backdrop-filter: blur(7px);
+    -o-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    box-shadow: 0 .4rem .8rem #0005;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+main header{
+    padding: 20px 30px;
+    background-color: #fff4;
+}
+main header form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+main header form .float-btn{
+    background-color: #00000041;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+main header form .search-filter{
+    display: flex;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 8px;
+    width: 300px;
+}
+main header form .search-filter input{
+    flex-grow: 1;
+    font-size: 16px;
+    background-color: transparent;
+}
+main header form .search-filter .filter-btn{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    color: whitesmoke;
+    display: grid;
+    place-items:center;
+}
+
+main .main-table{
+    flex-grow: 1;
+    background-color: rgba(255, 255, 255, 0.555);
+    padding: 20px;
+    overflow: auto;
+}
+main .main-table table{
+    min-width: 100%;
+    border-collapse: collapse;
+    position: relative;
+}
+main .main-table table thead{
+    position: sticky;
+    top: 0;
+    background-color: black;
+    z-index: 99;
+    color: whitesmoke;
+}
+main .main-table table tbody tr:nth-child(even){
+    background-color: rgba(255, 255, 255, 0.294);
+}
+tbody{
+    position: relative;
+    
+}
+/* tbody tr{
+    --delay :.1s;
+    transition: .5s ease-in-out var(--delay);
+}
+tbody tr.hide{
+    opacity: 0;
+    position: absolute;
+    transform: translateX(100%);
+} */
+th,td{
+    padding: 20px;
+    text-align: center;
+} 
+
+td span{
+    background-color: whitesmoke;
+    padding: 10px;
+    font-size: 16px;border-radius: 5px;
+    cursor: pointer;
+    opacity: .7;
+}
+td span:hover{
+    opacity: 1;
+}
+.edit{
+    background-color: green;
+    color: whitesmoke;
+}
+.remove{
+    background-color: red;
+    color: whitesmoke;
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+footer ul{
+    display: flex;
+}
